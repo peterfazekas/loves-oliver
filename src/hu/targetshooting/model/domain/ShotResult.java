@@ -48,20 +48,8 @@ public class ShotResult {
         return id;
     }
 
-    public String getShots() {
-        return shots;
-    }
-
     public Integer getScore() {
         return score;
     }
 
-    @Override
-    public String toString() {
-        return "\n{" +
-                "id=" + id +
-                ", shots='" + shots + '\'' +
-                ", score=" + score +
-                '}';
-    }
 }

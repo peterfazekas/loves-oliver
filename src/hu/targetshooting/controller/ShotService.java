@@ -34,7 +34,7 @@ public class ShotService {
         ShotResult shotResult = getShotResultById(id);
         return String.format("   a. Célt érő lövések: %s%n" +
                         "   b. Az eltalált korongok száma: %d%n" +
-                        "   c. A loghosszabb hibátlan sorozat hossza: %d%n" +
+                        "   c. A leghosszabb hibátlan sorozat hossza: %d%n" +
                         "   d. A versenyző pontszáma: %d",
                 shotResult.getSuccessShotsIndexes(), shotResult.countSuccessShots(),
                 shotResult.getLongestSuccessSequenceSize(), shotResult.getScore());
@@ -43,8 +43,7 @@ public class ShotService {
     public List<String> getFinalResult() {
         List<String> lines = new ArrayList<>();
         List<ShotResult> finalResultList = createFinalResult();
-        int prevScore = 0;
-        int prevOrder = 0;
+        int prevScore = 0, prevOrder = 0;
         for (int i = 0; i < finalResultList.size(); i++) {
             ShotResult finalResult = finalResultList.get(i);
             int order = finalResult.getScore() == prevScore ? prevOrder : i + 1;
@@ -53,10 +52,6 @@ public class ShotService {
             prevOrder = order;
         }
         return lines;
-
-//        return createFinalResult().stream()
-//                .map(i -> i.getId() + "\t" + i.getScore())
-//                .collect(Collectors.toList());
     }
 
     private List<ShotResult> createFinalResult() {
